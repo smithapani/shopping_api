@@ -2,6 +2,8 @@ const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
 const validator = require("validator");
+const dotenv = require("dotenv");
+require('dotenv').config()
 const cookieParser = require("cookie-parser");
 const {engine} = require("express-handlebars");
 const Handlebars = require("handlebars");
@@ -26,8 +28,8 @@ app.engine("hbs",engine({
 
 app.use("/", studentRoutes);
 
-app.listen(3000, () => {
-    console.log("Server is running on port 3000")
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
 })
 
 const addStudentData = async () => {
