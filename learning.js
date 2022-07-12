@@ -1,3 +1,12 @@
+/*
+This file summary:
+Array of objects
+Array operations
+
+There is only one file:
+learning.js
+*/
+
 const cars = [{
     car : {
         color : "red"
