@@ -15,7 +15,13 @@ const itemSchema = mongoose.Schema({
     name : {
         type : String,
         required : true,
-        trim : true
+        trim : true,
+        minlength : 2,
+        validate(value){
+            if(value.length < 2){
+                throw new Error("Name can not be less then 2 characters");
+            }
+        }
     },
 
     description : {
@@ -31,7 +37,13 @@ const itemSchema = mongoose.Schema({
 
     price : {
         type : Number,
-        required : true
+        required : true,
+        default : 0,
+        validate(value){
+            if(value < 0){
+                throw new Error("Price can not be negative");
+            }
+        }
     }
 })
 

@@ -48,12 +48,11 @@ router.post("/register", async (req, res) => {
             res.cookie("jwt",token,{
                 expires : new Date(Date.now() + 600000)
             });
-    
-            const data = await student.save();
-    
-            console.log(data);
 
+            const data = await student.save();
+            console.log(data);
             res.json({data});
+    
         }
         else{
             res.json({
@@ -268,6 +267,7 @@ router.put("/item/:id",Auth,async (req,res) => {
 router.delete('/item/:id', Auth, async(req, res) => {
     try {
         const deletedItem = await Item.findOneAndDelete( {_id: req.params.id} )
+
         if(!deletedItem) {
             res.status(404).send({error: "Item not found"})
         }
@@ -311,7 +311,7 @@ router.post("/cart",Auth, async (req,res) => {
         const bill = quantity*price;
         console.log("bill" +bill);
 
-        //First check whether the cart exist or not
+        //First check whether item exist in the cart or not
 
         if(cart){
             const itemIndex = cart.items.findIndex((item) => item.itemId == itemId);
@@ -334,7 +334,7 @@ router.post("/cart",Auth, async (req,res) => {
                 res.status(200).send(cart);
             }
 
-            //Cart will not exist, so we will push the item
+            //Item in the cart will not exist, so we will push the item
 
             else{
                 cart.items.push({itemId, name, category, quantity, price});
@@ -409,7 +409,7 @@ router.delete("/cart/",Auth, async(req,res) => {
             return item.itemId == itemId
         })
 
-        console.log("DELETE : Item index",itemIndex);
+        console.log("DELETE function : Item index",itemIndex);
 
         if(itemIndex > -1){
             let product = cart.items[itemIndex];

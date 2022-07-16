@@ -38,7 +38,8 @@ const studentSchema = new mongoose.Schema({
     },
 
     active: {
-        type: Boolean
+        type: String,
+        default : true
     },
 
     password : {
@@ -54,7 +55,7 @@ const studentSchema = new mongoose.Schema({
     cpassword : {
         type : String,
         validate(value){
-            if(value.length < 8){
+            if(value.length == 0 || value.length < 8){
                 throw new Error("Please enter atleast 8 characters");
             }
         }
