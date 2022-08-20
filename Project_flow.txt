@@ -1,5 +1,7 @@
 -This project includes below functionalities
 
+Technologies used: Node Js, Express Js, MongoDB
+
 1. Register with jwt token & upload profile photo with multer library
 2. Login with jwt token
 3. CRUD operations in item
